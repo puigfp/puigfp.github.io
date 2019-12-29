@@ -19,7 +19,10 @@ export default () => {
           </div>
         </div>
         <nav>
-          <Link to="/">About</Link> <code>{"// TODO"}</code>
+          <a href="https://github.com/puigfp">Github</a>
+          {" / "}
+          <Link to="/">About</Link>
+          <code>{"  // TODO"}</code>
         </nav>
       </header>
 
