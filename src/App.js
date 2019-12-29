@@ -1,33 +1,32 @@
+// 3p
 import React from 'react'
-import { Root, Routes, addPrefetchExcludes } from 'react-static'
-//
-import { Link, Router } from 'components/Router'
-import Dynamic from 'containers/Dynamic'
+import { Root, Routes } from 'react-static'
+import { Link } from '@reach/router'
 
-import './app.css'
+// local
+import './style/style.scss'
 
-// Any routes that start with 'dynamic' will be treated as non-static routes
-addPrefetchExcludes(['dynamic'])
-
-function App() {
+export default () => {
   return (
     <Root>
-      <nav>
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/dynamic">Dynamic</Link>
-      </nav>
-      <div className="content">
-        <React.Suspense fallback={<em>Loading...</em>}>
-          <Router>
-            <Dynamic path="dynamic" />
-            <Routes path="*" />
-          </Router>
-        </React.Suspense>
-      </div>
+      <header>
+        <div className='site-title'>
+          <h1>
+            <Link to="/">puigfp</Link>
+          </h1>
+          <div className='quote'>
+            A compilation of the rabbit holes I fall into
+          </div>
+        </div>
+        <nav>
+          <Link to="/">About</Link>
+          {' '}<code>{'// TODO'}</code>
+        </nav>
+      </header>
+
+      <React.Suspense fallback={<em>Loading...</em>}>
+        <Routes />
+      </React.Suspense>
     </Root>
   )
 }
-
-export default App

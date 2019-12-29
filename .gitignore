@@ -1,1 +1,7 @@
+# node.js
 /node_modules
+
+# react-static
+/artifacts
+/dist
+/tmp
