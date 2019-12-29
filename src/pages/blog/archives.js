@@ -13,11 +13,11 @@ export default () => {
       <ul>
         {posts.length ? (
           posts.map(post => (
-            <li key={post.metadata.slug}>
-              <Link to={`/blog/post/${post.metadata.slug}`}>
-                {new Date(post.metadata.date).toISOString().slice(0, 10)}
+            <li key={post.slug}>
+              <Link to={`/blog/post/${post.slug}`}>
+                {new Date(post.date).toISOString().slice(0, 10)}
                 {" • "}
-                {post.metadata.title}
+                {post.title}
               </Link>
             </li>
           ))

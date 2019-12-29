@@ -2,7 +2,7 @@
 import React from "react"
 import { useRouteData } from "react-static"
 import { Link } from "@reach/router"
-import _ from "lodash/fp"
+import groupBy from "lodash/fp/groupBy"
 
 // local
 import config from "../../config"
@@ -14,10 +14,8 @@ const PostsList = ({ lang, posts }) => {
       <ul>
         {posts ? (
           posts.slice(0, 10).map(post => (
-            <li key={post.metadata.slug}>
-              <Link to={`/blog/post/${post.metadata.slug}`}>
-                {post.metadata.title}
-              </Link>
+            <li key={post.slug}>
+              <Link to={`/blog/post/${post.slug}`}>{post.title}</Link>
             </li>
           ))
         ) : (
@@ -35,7 +33,7 @@ const PostsList = ({ lang, posts }) => {
 
 export default () => {
   const { posts } = useRouteData()
-  const postsByLanguage = _.groupBy(post => post.metadata.lang)(posts)
+  const postsByLanguage = groupBy(post => post.lang)(posts)
   return config.languages.map(lang => (
     <PostsList key={lang.lang} lang={lang} posts={postsByLanguage[lang.lang]} />
   ))

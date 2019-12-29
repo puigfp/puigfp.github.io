@@ -21,6 +21,8 @@ async function readPost(dir, slug) {
 }
 
 export default {
+  siteRoot: "https://puigfp.github.io/",
+  stagingSiteRoot: "http://localhost:5000/",
   getRoutes: async ({ stage }) => {
     const dir = "public/blog/post"
     const slugs = await fs.readdir(dir)
@@ -32,7 +34,7 @@ export default {
         path: "/",
         template: "src/pages/index.js",
         getData: () => ({
-          posts
+          posts: posts.map(post => post.metadata)
         })
       },
       // 404
@@ -55,13 +57,17 @@ export default {
         template: "src/pages/blog/archives.js",
         getData: async () => ({
           lang,
-          posts: _.filter(post => post.metadata.lang === lang.lang)(posts)
+          posts: _.flow(
+            _.map(post => post.metadata),
+            _.filter(post => post.lang === lang.lang)
+          )(posts)
         })
       }))
     ]
   },
   plugins: [
-    "react-static-plugin-sass", // .scss
-    "react-static-plugin-reach-router"
+    "react-static-plugin-sass",
+    "react-static-plugin-reach-router",
+    "react-static-plugin-sitemap"
   ]
 }
