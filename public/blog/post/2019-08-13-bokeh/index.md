@@ -145,7 +145,7 @@ $$
 
 Ainsi si on double notre focale et notre distance par rapport à notre sujet, le grossissment reste identique et l'image du sujet sur le capteur \~aussi[^bokeh].
 
-[^bokeh]: c'est faux pour l'arrière plan, car changer de focale changer l'angle de vue, avec une focale plus longue, le cadrage de l'arrière plan sera plus serré.
+[^bokeh]: C'est faux pour l'arrière plan, car changer de focale va changer l'angle de vue, et donc, avec une focale plus longue, le cadrage de l'arrière plan sera plus serré.
 
 Autrement dit, il existe une infinités de combinaisons longueur focale / distance au sujet qui peuvent nous donner le grossissement voulu pour notre sujet.
 
