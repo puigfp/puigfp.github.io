@@ -2,7 +2,7 @@
 import React from "react"
 import { useRouteData } from "react-static"
 import { Link } from "@reach/router"
-import _ from "lodash/fp"
+import groupBy from "lodash/fp/groupBy"
 
 // local
 import config from "../../config"
@@ -33,7 +33,7 @@ const PostsList = ({ lang, posts }) => {
 
 export default () => {
   const { posts } = useRouteData()
-  const postsByLanguage = _.groupBy(post => post.lang)(posts)
+  const postsByLanguage = groupBy(post => post.lang)(posts)
   return config.languages.map(lang => (
     <PostsList key={lang.lang} lang={lang} posts={postsByLanguage[lang.lang]} />
   ))
