@@ -1,0 +1,50 @@
+on:
+  push:
+    branches:
+      - src
+
+name: deploy
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Install node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: '13'
+
+    - name: Checkout repository
+      uses: actions/checkout@v1
+
+    - name: Cache dependencies
+      id: cache-node-modules
+      uses: actions/cache@v1
+      with:
+        path: node_modules
+        key: node-modules-${{ hashFiles('package-lock.json') }}
+
+    - name: Install dependencies
+      if: steps.cache-node-modules.outputs.cache-hit != 'true'
+      run: npm ci
+
+    - name: Build
+      run: |
+        npx react-static build
+        mv dist /home/runner/work/build
+
+    - name: Upload build to master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY /home/runner/work/master
+        cd /home/runner/work/master
+        git checkout master
+        git config --local user.name "Francisco-Pierre Puig (Github Action)"
+        git config --local user.email puig.franciscopierre@gmail.com
+        rm -rf *
+        mv /home/runner/work/build/* .
+        git add .
+        git commit --amend -m "deploy"
+        git push --force
