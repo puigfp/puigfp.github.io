@@ -52,6 +52,7 @@ And I defined a some custom renderers:
 
 ## TODOs
 
+- add RSS feed
 - add code highlighting support
 - add automatic image pre-processing (compression, etc)
 - add about page
