@@ -12,7 +12,7 @@ For the design and general look, I inspired myself from other projects, mainly t
 
 Being able to read their source code was very useful. People might find reading my code useful, that's why I'm publishing it.
 
-Other this code relies on:
+Other things this code relies on:
 
 - [normalize.css](https://necolas.github.io/normalize.css/)
 - [SASS](https://sass-lang.com/) (just because I like [nesting CSS selectors](https://sass-lang.com/documentation/style-rules#nesting))
