@@ -29,6 +29,10 @@ jobs:
       if: steps.cache-node-modules.outputs.cache-hit != 'true'
       run: npm ci
 
+    - name: Check code format
+      run: |
+        npm run format -- --check
+
     - name: Build
       run: |
         npx react-static build
