@@ -50,6 +50,12 @@ And I defined a some custom renderers:
 
 - two to render footnote definitions and references (because React-Markdown doesn't know how to render them by default)
 
+_XXX_:  
+The resulting React components tree is computed and rendered to HTML at build time, meaning that the blog posts will load and look fine (including LateX equations !) even if you have Javascript disabled.  
+However, if you have JavaScript enabled, React will take over eventually (this is a core feature of react-static, cf. [talk](https://youtu.be/OqbJ5swVpDQ?t=707)). Then, if you click on links and go to another post's page, your browser will render it by downloading the original Markdown code and re-computing the React components tree on the client side. The main side-effect of this behavior is that Remark and KateX are shipped to your browser, and those are heavy libraries.  
+This should be fixed by computing the HTML output once and for all at build time (ie, in `static.config.js`) and having the post component simply use `dangerouslySetInnerHTML` to render the post content.  
+It should also be possible to only compute the Markdown AST at build time, and rendering it to a React components tree in the browser using [`react-markdown`'s `astToReact` function](https://github.com/rexxars/react-markdown/blob/master/src/ast-to-react.js). This would remove the Markdown parser from the bundle. However, KateX would still be needed and is actually a lot heavier than `remark-parser`, and that's why the previous solution is better.
+
 ## TODOs
 
 - add RSS feed
