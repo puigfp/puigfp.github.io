@@ -24,8 +24,8 @@ const PostsList = ({ lang, posts }) => {
       </ul>
       <div className="archives-nav">
         <Link to={`/blog/${lang.lang}/`}>Archives</Link>
-        {" / "}
-        <a href={`/blog/${lang.lang}/index.xml`}>RSS</a>
+        {/* {" / "}
+        <a href={`/blog/${lang.lang}/`}>RSS</a> */}
       </div>
     </section>
   )
