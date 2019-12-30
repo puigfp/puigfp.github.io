@@ -3,8 +3,7 @@ import { promises as fs, read } from "fs"
 import path from "path"
 
 // 3p
-import matter, { language } from "gray-matter"
-import _ from "lodash/fp"
+import matter from "gray-matter"
 
 // local
 import config from "./config"
@@ -47,7 +46,7 @@ export default {
         path: `/blog/post/${post.metadata.slug}`,
         template: "src/pages/blog/post.js",
         getData: async () => ({
-          // XXX: quick and dirty hot reload for post content
+          // XXX: quick and dirty hot reload for post content in dev mode
           post: stage !== "dev" ? post : await readPost(dir, post.metadata.slug)
         })
       })),
@@ -57,10 +56,9 @@ export default {
         template: "src/pages/blog/archives.js",
         getData: async () => ({
           lang,
-          posts: _.flow(
-            _.map(post => post.metadata),
-            _.filter(post => post.lang === lang.lang)
-          )(posts)
+          posts: posts
+            .filter(post => post.metadata.lang === lang.lang)
+            .map(post => post.metadata)
         })
       }))
     ]
