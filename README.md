@@ -65,3 +65,11 @@ TL;DR:
 npm install
 npm run start
 ```
+
+## Deployment
+
+Done automagically by a [Github Actions workflow](.github/workflows/deploy.yml).
+
+This workflow builds the website and pushes it to the `master` branch of this repository, which is automatically published to [puigfp.github.io](https://puigfp.github.io/) by Github.
+
+The code used to build the website is stored in the `src` branch.
