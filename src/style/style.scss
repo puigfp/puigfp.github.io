@@ -1,3 +1,5 @@
+$link-color: #551a8b;
+
 html, body {
     padding: 0;
 
@@ -17,7 +19,7 @@ body {
 }
 
 a {
-    color: #551a8b;
+    color: $link-color;
 }
 
 // Make images responsive
@@ -113,6 +115,11 @@ img {
     .markdown {
         @import "markdown.scss";
 
+        // override theme
+        a {
+            color: $link-color;
+        }
+
         figure {
             margin: 0;
         }
@@ -128,6 +135,7 @@ img {
             font-size: 0.9rem;
         }
 
+        // footnotes top border
         .footnotes::before {
             content: "";
             display: block;
