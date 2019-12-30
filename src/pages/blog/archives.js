@@ -3,8 +3,6 @@ import React from "react"
 import { useRouteData } from "react-static"
 import { Link } from "@reach/router"
 
-import "katex/dist/katex.min.css"
-
 export default () => {
   const { lang, posts } = useRouteData()
   return (

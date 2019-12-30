@@ -1,5 +1,5 @@
 // 3p
-import React, { Children } from "react"
+import React from "react"
 import { useRouteData } from "react-static"
 import ReactMarkdown from "react-markdown"
 import remarkMath from "remark-math"

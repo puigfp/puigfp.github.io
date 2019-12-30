@@ -1,7 +1,8 @@
 // 3p
 import React from "react"
-import { Root, Routes } from "react-static"
+import { Root, Head, Routes } from "react-static"
 import { Link } from "@reach/router"
+import "normalize.css"
 
 // local
 import "./style/style.scss"
@@ -9,6 +10,9 @@ import "./style/style.scss"
 export default () => {
   return (
     <Root>
+      <Head>
+        <title>puigfp</title>
+      </Head>
       <header>
         <div className="site-title">
           <h1>
