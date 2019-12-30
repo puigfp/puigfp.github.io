@@ -31,14 +31,27 @@ const footnotesPlugin = rootNode => {
   return rootNode
 }
 
-// custom renderers
-const renderers = post => ({
-  // update image urls to make them work
-  // TODO: add special behavior for absolute paths (to external images)
-  image: ({ src, alt }) => (
-    <img alt={alt} src={`/blog/post/${post.metadata.slug}/${src}`} />
-  ),
+// Mdast (Markdown AST) plugin to update images urls
+const imagesPathPlugin = slug => {
+  const plugin = node => {
+    if (node.type === "image") {
+      // TODO: add special behavior for absolute paths (to external images)
+      node.url = `/blog/post/${slug}/${node.url}`
+      return
+    }
+    if (node.children === undefined) {
+      return
+    }
+    for (const node of node.children) {
+      plugin(node)
+    }
+    return node
+  }
+  return plugin
+}
 
+// custom renderers
+const renderers = {
   // KateX renderers for math blocks
   math: ({ value }) => <BlockMath math={value} />,
   inlineMath: ({ value }) => <InlineMath math={value} />,
@@ -66,7 +79,7 @@ const renderers = post => ({
       </a>
     </sup>
   )
-})
+}
 
 export default () => {
   const { post } = useRouteData()
@@ -83,12 +96,12 @@ export default () => {
         parserOptions={{
           footnotes: true
         }}
-        astPlugins={[footnotesPlugin]}
+        astPlugins={[footnotesPlugin, imagesPathPlugin(post.metadata.slug)]}
         plugins={[
           remarkMath, // latex equations
           remarkFootnotes // footnotes auto-numbering
         ]}
-        renderers={renderers(post)}
+        renderers={renderers}
       />
     </div>
   )
