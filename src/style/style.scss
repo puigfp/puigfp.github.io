@@ -124,6 +124,12 @@ img {
             margin: 0;
         }
 
+        :not(pre) code {
+            background-color: #dadada;
+            padding-left: .1rem;
+	        padding-right: .1rem;
+        }
+
         .date-container {
             display: flex;
             justify-content: flex-end;

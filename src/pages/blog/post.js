@@ -6,6 +6,8 @@ import remarkMath from "remark-math"
 import remarkFootnotes from "remark-numbered-footnote-labels"
 import { InlineMath, BlockMath } from "react-katex"
 import "katex/dist/katex.min.css"
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 // Mdast (Markdown AST) plugin to move footnotes definitions to the end
 const footnotesPlugin = rootNode => {
@@ -56,6 +58,13 @@ const renderers = {
   math: ({ value }) => <BlockMath math={value} />,
   inlineMath: ({ value }) => <InlineMath math={value} />,
 
+  // code blocks
+  code: ({ value, language }) => (
+    <SyntaxHighlighter language={language} style={tomorrow}>
+      {value}
+    </SyntaxHighlighter>
+  ),
+
   // custom footnotes node
   footnotes: ({ children }) => <div className="footnotes">{children}</div>,
 
@@ -96,6 +105,7 @@ export default () => {
         parserOptions={{
           footnotes: true
         }}
+        escapeHtml={false}
         astPlugins={[footnotesPlugin, imagesPathPlugin(post.metadata.slug)]}
         plugins={[
           remarkMath, // latex equations

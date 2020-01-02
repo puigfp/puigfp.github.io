@@ -22,6 +22,7 @@
     "react-static-plugin-reach-router": "^7.2.0",
     "react-static-plugin-sass": "^7.2.2",
     "react-static-plugin-sitemap": "^7.2.3",
+    "react-syntax-highlighter": "^12.2.1",
     "remark-math": "^2.0.0",
     "remark-numbered-footnote-labels": "^1.1.0"
   },
