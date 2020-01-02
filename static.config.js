@@ -24,8 +24,12 @@ export default {
   stagingSiteRoot: "http://localhost:5000/",
   getRoutes: async ({ stage }) => {
     const dir = "public/blog/post"
-    const slugs = await fs.readdir(dir)
-    const posts = await Promise.all(slugs.map(slug => readPost(dir, slug)))
+    const slugs = await fs.readdir(dir, { withFileTypes: true })
+    const posts = await Promise.all(
+      slugs
+        .filter(slug => slug.isDirectory())
+        .map(slug => readPost(dir, slug.name))
+    )
 
     return [
       // landing page
