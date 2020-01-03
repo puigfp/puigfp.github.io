@@ -41,6 +41,7 @@ jobs:
     - name: Upload build to master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       run: |
         git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY /home/runner/work/master
         cd /home/runner/work/master
@@ -52,3 +53,4 @@ jobs:
         git add .
         git commit --amend -m "deploy" --date "$(date)"
         git push --force
+        curl -u puigfp:$GITHUB_PAT -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds -H "Accept: application/vnd.github.switcheroo-preview+json"
