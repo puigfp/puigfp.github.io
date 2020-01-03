@@ -50,5 +50,5 @@ jobs:
         rm -rf *
         mv /home/runner/work/build/* .
         git add .
-        git commit --amend -m "deploy"
+        git commit --amend -m "deploy" --date "$(date)"
         git push --force
