@@ -8,6 +8,7 @@ export default ({ feedsHeadEntries: feeds }) => ({
         <Head>
           {feeds.map(({ path, title }) => (
             <link
+              key={path}
               href={path}
               type="application/atom+xml"
               rel="alternate"

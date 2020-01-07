@@ -2,20 +2,21 @@
 import React from "react"
 import { useRouteData } from "react-static"
 import { Link } from "@reach/router"
-import groupBy from "lodash/fp/groupBy"
 
 // local
 import config from "../../config"
 
-const PostsList = ({ lang, posts }) => {
+const PostsList = ({ lang, postsMetadata }) => {
   return (
     <section className="posts">
       <h2>{lang.latest_title}</h2>
       <ul>
-        {posts ? (
-          posts.slice(0, 10).map(post => (
-            <li key={post.slug}>
-              <Link to={`/blog/post/${post.slug}`}>{post.title}</Link>
+        {postsMetadata ? (
+          postsMetadata.slice(0, 10).map(postMetadata => (
+            <li key={postMetadata.slug}>
+              <Link to={`/blog/post/${postMetadata.slug}`}>
+                {postMetadata.title}
+              </Link>
             </li>
           ))
         ) : (
@@ -32,9 +33,14 @@ const PostsList = ({ lang, posts }) => {
 }
 
 export default () => {
-  const { posts } = useRouteData()
-  const postsByLanguage = groupBy(post => post.lang)(posts)
-  return config.languages.map(lang => (
-    <PostsList key={lang.lang} lang={lang} posts={postsByLanguage[lang.lang]} />
+  const { postsMetadata } = useRouteData()
+  return config.blog.languages.map(lang => (
+    <PostsList
+      key={lang.lang}
+      lang={lang}
+      postsMetadata={postsMetadata.filter(
+        postMetadata => postMetadata.lang === lang.lang
+      )}
+    />
   ))
 }

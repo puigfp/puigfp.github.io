@@ -56,10 +56,10 @@ async function getRSSFeeds() {
   return [
     getBlogRSSFeed({
       path: "/blog",
-      title: "puigfp - all posts",
+      title: config.blog.mainRssFeedTitle,
       posts
     }),
-    ...config.languages.map(({ lang, rssFeedTitle }) =>
+    ...config.blog.languages.map(({ lang, rssFeedTitle }) =>
       getBlogRSSFeed({
         path: `/blog/${lang}`,
         title: rssFeedTitle,
@@ -70,8 +70,8 @@ async function getRSSFeeds() {
 }
 
 const feedsHeadEntries = [
-  { path: "/blog/atom.xml", title: "puigfp - all posts" },
-  ...config.languages.map(({ lang, rssFeedTitle }) => ({
+  { path: "/blog/atom.xml", title: config.blog.mainRssFeedTitle },
+  ...config.blog.languages.map(({ lang, rssFeedTitle }) => ({
     path: `/blog/${lang}/atom.xml`,
     title: rssFeedTitle
   }))
@@ -88,7 +88,7 @@ export default {
         path: "/",
         template: "src/pages/index.js",
         getData: () => ({
-          posts: posts.map(post => post.metadata)
+          postsMetadata: posts.map(post => post.metadata)
         })
       },
       // 404
@@ -109,7 +109,7 @@ export default {
         })
       })),
       // blog posts archives
-      ...config.languages.map(lang => ({
+      ...config.blog.languages.map(lang => ({
         path: `/blog/${lang.lang}/`,
         template: "src/pages/blog/archives.js",
         getData: async () => ({
