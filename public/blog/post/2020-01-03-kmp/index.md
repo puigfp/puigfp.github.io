@@ -19,7 +19,7 @@ def naive_search(p, t):
 ```
 
 _Implementation detail:_  
-the last check we want to do is `p == t[len(t) - len(p) : len(t)]`, that's why the range's upper bound is `len(t) - len(p) + 1`._
+the last check we want to do is `p == t[len(t) - len(p) : len(t)]`, that's why the range's upper bound is `len(t) - len(p) + 1`.
 
 ### Complexity
 
@@ -40,7 +40,7 @@ This is because the string we're looking for (`"Morris"`) doesn't have any repea
 Now, let's look at a more pathological example.
 
 If we search for `"aaaab"` inside `"aaaaaaaaaaaaaabaaaa"`, most of the time, it will take 5 comparisons to know that `t[i:i+len(p)]` is different from `p`.  
-If `t[i:i+len(p)] == p` returned false after 5 comparisons, we threw away the knowledge than `t[i:i+4]` is equal to `p[:4]`. 
+If `t[i:i+len(p)] == p` returned false after 5 comparisons, we threw away the knowledge than `t[i:i+4]` is equal to `p[:4]`.
 If `t[i:i+4]` is equal to `p[:4]` (`"aaaa"`), we know that `t[i+1:i+4]` is equal to `p[1:4]` (`"aaa"`), which is itself equal to `p[:3]`. This knowledge can save us 3 comparisons when we test if `t[i+1:i+1+len(p)]` is equal to `p`.
 
 The same idea holds for strings that have more complicated repeating patterns: for instance if it takes 10 comparisons to know that `t[i:i+10]` is different from `"ababcababd"`, we know that `t[i+5:i+9]` is equal to `p[5:9]` (`"abab"`), which is itself equal to `p[:4]`. This knowledge could save us 4 comparisons when when testing for `t[i+5:i+15] == p`.
@@ -76,11 +76,12 @@ def kmp_search(p, t):
 The following invariants are maintained during the execution:
 
 - at the beginning of every iteration of loop 1:
-    - `j >= 0`
-    - `j` is the greatest number such as `p[:j] == t[i-j:i]`
+
+  - `j >= 0`
+  - `j` is the greatest number such as `p[:j] == t[i-j:i]`
 
 - at the beginning of every iteration of loop 2:
-    - `j` is any number such as `p[:j] == t[i-j:i]`
+  - `j` is any number such as `p[:j] == t[i-j:i]`
 
 The magic happens in loop 2.
 
@@ -173,8 +174,8 @@ Notice what happens on iteration `i = 4`.
 
 Per the previous section, `kmp_jump_table(p)` should be a function that, for any pattern `p`, returns a `jump` list of length `len(p)+1` with the following properties:
 
- - `jump[0] = -1`
- - `jump[i]` is the largest `0 <= j < i` such as `p[:j] == p[i-j:i]` (ie, there exists `s` such as `p[:i] == s + p[:j]`)
+- `jump[0] = -1`
+- `jump[i]` is the largest `0 <= j < i` such as `p[:j] == p[i-j:i]` (ie, there exists `s` such as `p[:i] == s + p[:j]`)
 
 Here's an implementation of the `kmp_jump_table` function:
 
@@ -195,12 +196,13 @@ This code looks a lot like the KMP algorithm itself.
 The following invariants are maintained during the execution:
 
 - at the beginning of every iteration of loop 1:
-    - `0 <= j < i - 1`
-    - `j` is the greatest number such as `p[:j] == p[i-1-j:i-1]`
-    - the final values for `jump[0],jump[1],...,jump[i-1]` are already computed
+
+  - `0 <= j < i - 1`
+  - `j` is the greatest number such as `p[:j] == p[i-1-j:i-1]`
+  - the final values for `jump[0],jump[1],...,jump[i-1]` are already computed
 
 - at the beginning of every iteration of loop 2:
-    - `j` is any number such as `p[:j] == p[i-1-j:i-1]`
+  - `j` is any number such as `p[:j] == p[i-1-j:i-1]`
 
 Like in the KMP algorithm, `j = jump[j]` keeps the loop 2 invariant true.
 
@@ -218,10 +220,10 @@ In the main part of the KMP algorithm:
 
 - loop 1 runs at most `len(t)` times
 - loop 2 runs at most `len(t)` times (in total)
-    - the value of `j` has a lower bound: `-1`
-    - each loop 2 iteration decreases the value of `j`: `j = jump[j]` ( `j < jump[j]`)
-    - `j += 1` is run once per loop 1 iteration
-    - thus, the total number of loop 2 iterations is smaller than the number of loop 1 iterations
+  - the value of `j` has a lower bound: `-1`
+  - each loop 2 iteration decreases the value of `j`: `j = jump[j]` ( `j < jump[j]`)
+  - `j += 1` is run once per loop 1 iteration
+  - thus, the total number of loop 2 iterations is smaller than the number of loop 1 iterations
 
 The KMP algorithm itself has complexity $O(|T|)$.
 

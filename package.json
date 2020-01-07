@@ -6,7 +6,7 @@
     "build": "react-static build",
     "analyze": "react-static build --analyze",
     "serve": "serve dist -p 3000",
-    "format": "prettier --write config.js static.config.js \"src/**/*.js\""
+    "format": "prettier --write config.js static.config.js \"src/**/*.js\" package.json README.md public/**/index.md"
   },
   "dependencies": {
     "@reach/router": "^1.2.1",

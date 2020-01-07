@@ -29,6 +29,7 @@ My understanding of how `react-markdown` works is:
 - and then it converts this Markdown AST to a tree of React components
 
 To have `react-markdown` render the blog posts in the way I wanted, I had to use:
+
 - plugins, which tweak the parsing stage
 - AST plugins, which can transform Markdown AST before it's rendered to components
 - custom renderers, which tell React-Markdown how some Markdown AST nodes should be converted to React components

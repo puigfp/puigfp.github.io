@@ -45,7 +45,7 @@ Considérons maintenant la situation suivante:
 
 La mise au point a été faite sur l'objet $AB$, et on va s'intéresser à un autre objet présent dans le champ, qui est l'objet $CD$.
 
-Le point $D$  a produit sur le capteur une tache $D_1^*D_2^*$ dont nous allons chercher à estimer la taille, plus la taille $\overline{\Delta} = \overline{D_1^*D_2^*}$ de cette tache est grande, plus le point $D$ est flou (et donc plus l'effet de bokeh est présent).
+Le point $D$ a produit sur le capteur une tache $D_1^*D_2^*$ dont nous allons chercher à estimer la taille, plus la taille $\overline{\Delta} = \overline{D_1^*D_2^*}$ de cette tache est grande, plus le point $D$ est flou (et donc plus l'effet de bokeh est présent).
 
 Après un calcul dont le détail est fourni en dessous, on obtient:
 
@@ -62,7 +62,6 @@ En posant:
 - $\overline{\delta} = \overline{AC}$, distance entre le plan de l'objet $AB$, sur lequel la mise au point est faite, et le plan de l'objet $CD$, dont on veut estimer le flou
 
 - $\overline{d} = \overline{OA}$, distance de mise au point
-
 
 La formule peut être ré-écrite:
 
@@ -192,21 +191,21 @@ Avoir un plus grand capteur donc aide à obtenir du bokeh, car cela permet d'uti
 
 On pourrait dire que si on augmente la taille du capteur tout en gardant le même nombre de pixels, on va aussi augmenter la limite de netteté $\Delta_{\text{lim}}$ définie plus haut (car chaque pixel individuel devient plus gros), et que cela risque de compenser l'effet qu'on vient de décrire.
 
-Je pense qu'on peut faire l'hypothèse que $\Delta_{\text{lim}}$ augmente linéairement avec la taille d'un pixel sur le capteur. Le niveau de flou à l'infini $|\overline{\Delta}_{\text{max}}| =-  \alpha f'^2 / \overline{d}$ est lui en $f'^2$. Ainsi, si on double la hauteur de notre capteur, on multiplie $\Delta_{\text{lim}}$ par $2$ et $|\overline{\Delta}_{\text{max}}|$ par  $4$.
+Je pense qu'on peut faire l'hypothèse que $\Delta_{\text{lim}}$ augmente linéairement avec la taille d'un pixel sur le capteur. Le niveau de flou à l'infini $|\overline{\Delta}_{\text{max}}| =-  \alpha f'^2 / \overline{d}$ est lui en $f'^2$. Ainsi, si on double la hauteur de notre capteur, on multiplie $\Delta_{\text{lim}}$ par $2$ et $|\overline{\Delta}_{\text{max}}|$ par $4$.
 En faisant l'hypothèse que le niveau de flou en l'infini perçu par notre oeil est proportionnel à $\frac{|\overline{\Delta}_{\text{max}}|}{\Delta_{\text{lim}}}$, doubler la taille de notre capteur revient donc à doubler le niveau de flou perçu par notre oeil.
 
 ## Conclusion
 
 En supposant qu'il n'y a pas de grosse erreur dans les raisonnements, cette citation semble vraie.
 
-__Détails du calcul__
+**Détails du calcul**
 
 ![](./images/schema_full.jpg)
 
 Sur ce dessin nous avons:
 
 - l'objet $AB$ et son image $A'B'$, sur lequel la mise au point est faite, $A'B$ est dont sur le capteur de l'appareil photo
-- l'objet $CD$  et son image $C'D'$, dont on cherche à estimer le flou.
+- l'objet $CD$ et son image $C'D'$, dont on cherche à estimer le flou.
 
 Pour estimer le flou de $C'D'$, on va calculer la taille de la tache $D_1^*D_2^*$ formée sur le capteur par les rayons créant l'image $D'$ de $D$.
 
@@ -264,7 +263,7 @@ $$
 \frac{\overline{OA'}}{OC'} = \frac{1 + f'/\overline{OC}}{1 + f'/\overline{OA}}
 $$
 
-On a donc, au premier ordre lorsque  $\frac{f'}{\overline{OA}}  \ll 1$:
+On a donc, au premier ordre lorsque $\frac{f'}{\overline{OA}}  \ll 1$:
 
 $$
 \frac{\overline{OA'}}{OC'} = (1 + f'/\overline{OC})(1 - f'/\overline{OA})
