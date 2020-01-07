@@ -58,10 +58,10 @@ It should also be possible to only compute the Markdown AST at build time, and r
 
 ## TODOs
 
-- add RSS feed
-- add code highlighting support
-- add automatic image pre-processing (compression, etc)
-- add about page
+- [x] add RSS feeds
+- [x] add code highlighting support
+- [ ] add automatic image pre-processing (compression, etc)
+- [ ] add about page
 
 ## Local development
 
