@@ -6,6 +6,7 @@ import "normalize.css"
 
 // local
 import "./style/style.scss"
+import config from "../config"
 
 export default () => {
   return (
@@ -16,11 +17,9 @@ export default () => {
       <header>
         <div className="site-title">
           <h1>
-            <Link to="/">puigfp</Link>
+            <Link to="/">{config.blog.title}</Link>
           </h1>
-          <div className="quote">
-            A compilation of the rabbit holes I fall into
-          </div>
+          <div className="quote">{config.blog.quote}</div>
         </div>
         <nav>
           <a href="https://github.com/puigfp">Github</a>

@@ -9,7 +9,7 @@ import config from "../../config"
 const PostsList = ({ lang, postsMetadata }) => {
   return (
     <section className="posts">
-      <h2>{lang.latest_title}</h2>
+      <h2>{lang.latestTitle}</h2>
       <ul>
         {postsMetadata ? (
           postsMetadata.slice(0, 10).map(postMetadata => (

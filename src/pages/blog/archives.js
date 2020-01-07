@@ -7,7 +7,7 @@ export default () => {
   const { lang, posts } = useRouteData()
   return (
     <section className="posts">
-      <h2>{lang.archive_title}</h2>
+      <h2>{lang.archiveTitle}</h2>
       <ul>
         {posts.length ? (
           posts.map(post => (

@@ -1,18 +1,20 @@
 export default {
   blog: {
+    title: "puigfp",
+    quote: "A compilation of the rabbit holes I fall into",
     mainRssFeedTitle: "puigfp - all posts",
     languages: [
       {
         lang: "en",
-        latest_title: "Latest Posts in English",
-        archive_title: "Archives (English)",
+        latestTitle: "Latest Posts in English",
+        archiveTitle: "Archives (English)",
         rssFeedTitle: "puigfp - en",
         empty: "None (for now)"
       },
       {
         lang: "fr",
-        latest_title: "Derniers articles en français",
-        archive_title: "Archives (français)",
+        latestTitle: "Derniers articles en français",
+        archiveTitle: "Archives (français)",
         rssFeedTitle: "puigfp - fr",
         empty: "Aucun (pour le moment)."
       }
