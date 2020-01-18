@@ -45,7 +45,7 @@ function getBlogRSSFeed({ path, title, posts }) {
     )(posts),
     entries: posts.map(post => ({
       title: post.metadata.title,
-      link: `/blog/post/${post.metadata.slug}`,
+      link: `/blog/post/${post.metadata.slug}/`,
       updated: post.metadata.date
     }))
   }

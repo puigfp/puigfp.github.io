@@ -14,7 +14,7 @@ const PostsList = ({ lang, postsMetadata }) => {
         {postsMetadata ? (
           postsMetadata.slice(0, 10).map(postMetadata => (
             <li key={postMetadata.slug}>
-              <Link to={`/blog/post/${postMetadata.slug}`}>
+              <Link to={`/blog/post/${postMetadata.slug}/`}>
                 {postMetadata.title}
               </Link>
             </li>

@@ -12,7 +12,7 @@ export default () => {
         {posts.length ? (
           posts.map(post => (
             <li key={post.slug}>
-              <Link to={`/blog/post/${post.slug}`}>
+              <Link to={`/blog/post/${post.slug}/`}>
                 {new Date(post.date).toISOString().slice(0, 10)}
                 {" • "}
                 {post.title}
