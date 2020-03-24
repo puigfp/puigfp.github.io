@@ -1,14 +1,14 @@
 # puigfp.github.io
 
-This repository hosts the source code of [puigfp.github.io](https://puigfp.github.io), my personal website, which is build using [react-static](https://github.com/react-static/react-static).
+This repository hosts the source code of [puigfp.github.io](https://puigfp.github.io), my personal website, which is built using [react-static](https://github.com/react-static/react-static).
 
-The only goal of this repository is to fit my personal use-case, which is, right now, a simple blog with the following characteristics:
+The only goal of this repository is to fit my personal use-case, which is, right now, a simple blog with the following features:
 
 - design optimized for readability, with a clear boundary between French and English content
 - simple post writing experience: the blog posts should be markdown files that are editable with a regular text-editor (such as Visual Studio Code or Typora), and in particular, images should render in a regular text-editor
 - support for LateX equations rendering and code blocks highlighting
 
-For the design and general look, I inspired myself from other projects, mainly the [cocoa theme for Hugo](https://github.com/nishanths/cocoa-hugo-theme/blob/master/screenshots.md) and [Typora's Newsprint theme](http://theme.typora.io/theme/Newsprint/) (I copy-pasted most of the CSS from this theme).
+For the design and general look, I inspired myself from other projects, mainly the [cocoa theme for Hugo](https://github.com/nishanths/cocoa-hugo-theme/blob/master/screenshots.md) and [Typora's Newsprint theme](http://theme.typora.io/theme/Newsprint/) (I copy-pasted most of the CSS from the latter).
 
 Being able to read their source code was very useful. People might find reading my code useful, that's why I'm publishing it.
 
