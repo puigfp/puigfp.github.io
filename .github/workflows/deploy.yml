@@ -56,7 +56,5 @@ jobs:
     - name: Trigger Github Pages deploy
       # How to force a Github Pages build:
       # https://stackoverflow.com/questions/24098792/how-to-force-github-pages-build
-      env:
-        GITHUB_PAT: ${{ secrets.GITHUB_PAT }}
       run: |
-        curl -u puigfp:$GITHUB_PAT -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds -H "Accept: application/vnd.github.switcheroo-preview+json"
+        curl -u puigfp:${{ secrets.githubPAT }} -X POST https://api.github.com/repos/$GITHUB_REPOSITORY/pages/builds -H "Accept: application/vnd.github.switcheroo-preview+json"
