@@ -39,8 +39,6 @@ jobs:
         mv dist /home/runner/work/build
 
     - name: Upload build to master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git clone https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY /home/runner/work/master
         cd /home/runner/work/master
