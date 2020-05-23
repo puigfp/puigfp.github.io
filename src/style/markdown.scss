@@ -42,7 +42,12 @@ h1 {
 	/* 48 / 30*/
 	margin-top: .5em;
 }
-h2,
+h2 {
+	font-size: 1.5625em; // 25 / 16
+	line-height: 1.42857142857; // 31 / 21
+	margin-top: .5em; // 56 / 21
+	margin-bottom:1.47619047619em; // 31 / 21
+}
 h3 {
 	font-size: 1.3125em;
 	/*21 / 16*/
@@ -52,9 +57,6 @@ h3 {
 	/*48 / 21*/
 	margin-bottom: 1.15em;
 	/*24 / 21*/
-}
-h3 {
-	font-weight: normal;
 }
 h4 {
 	font-size: 1.125em;
@@ -245,16 +247,6 @@ hr {
 .task-list-item input:checked:before,
 .task-list-item input[checked]:before{
 	color: inherit;
-}
-
-#write pre.md-meta-block {
-	min-height: 1.875rem;
-	color: #555;
-	border: 0px;
-	background: transparent;
-	margin-top: -4px;
-	margin-left: 1em;
-	margin-top: 1em;
 }
 
 .md-image>.md-meta {
