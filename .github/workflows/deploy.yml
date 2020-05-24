@@ -37,7 +37,6 @@ jobs:
       # see https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/
       run: |
         npx react-static build
-        touch dist/.nojekyll
         mv dist /home/runner/work/build
 
     - name: Upload build to master
@@ -48,7 +47,7 @@ jobs:
         git config --local user.name "Francisco-Pierre Puig (Github Action)"
         git config --local user.email puig.franciscopierre@gmail.com
         rm -rf *
-        mv /home/runner/work/build/* .
+        mv /home/runner/work/build/{*,.[^.]*} .
         git add .
         git commit --amend -m "deploy" --date "$(date)"
         git push --force
