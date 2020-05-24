@@ -34,8 +34,10 @@ jobs:
         npm run prettier -- --check
 
     - name: Build
+      # see https://github.blog/2009-12-29-bypassing-jekyll-on-github-pages/
       run: |
         npx react-static build
+        touch dist/.nojekyll
         mv dist /home/runner/work/build
 
     - name: Upload build to master
