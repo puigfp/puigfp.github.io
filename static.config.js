@@ -80,6 +80,7 @@ const feedsHeadEntries = [
 export default {
   siteRoot: "https://puigfp.github.io/",
   stagingSiteRoot: "http://localhost:5000/",
+  basePath: "",
   productionSourceMaps: true,
   getRoutes: async ({ stage }) => {
     const posts = await readPosts();
