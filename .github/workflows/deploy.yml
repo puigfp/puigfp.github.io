@@ -31,7 +31,7 @@ jobs:
 
     - name: Check code format
       run: |
-        npm run format -- --check
+        npm run prettier -- --check
 
     - name: Build
       run: |
