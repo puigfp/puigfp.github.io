@@ -1,12 +1,12 @@
 // 3p
-import React from "react"
-import { Root, Head, Routes } from "react-static"
-import { Link } from "@reach/router"
-import "normalize.css"
+import React from "react";
+import { Root, Head, Routes } from "react-static";
+import { Link } from "@reach/router";
+import "normalize.css";
 
 // local
-import "./style/style.scss"
-import config from "../config"
+import "./style/style.scss";
+import config from "../config";
 
 export default () => {
   return (
@@ -33,5 +33,5 @@ export default () => {
         <Routes />
       </React.Suspense>
     </Root>
-  )
-}
+  );
+};

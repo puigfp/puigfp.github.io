@@ -7,24 +7,24 @@ See:
 */
 
 // std (node.js)
-import { promises as fs } from "fs"
-import path from "path"
-import url from "url"
+import { promises as fs } from "fs";
+import path from "path";
+import url from "url";
 
 // 3p
-import chalk from "chalk" // react-static dependency
+import chalk from "chalk"; // react-static dependency
 
 const getTagURI = (url_, updated) => {
-  const { host, pathname } = url.parse(url_)
-  return `tag:${host},${updated.toISOString().split("T")[0]}:${pathname}`
-}
+  const { host, pathname } = url.parse(url_);
+  return `tag:${host},${updated.toISOString().split("T")[0]}:${pathname}`;
+};
 
 const getFeedXML = (config) => (feed) => {
-  const link = url.resolve(config.siteRoot, feed.path)
+  const link = url.resolve(config.siteRoot, feed.path);
   const linkSelf = url.resolve(
     config.siteRoot,
     path.join(feed.path, "atom.xml")
-  )
+  );
   return `
     <?xml version="1.0" encoding="utf-8"?>
     <feed xmlns="http://www.w3.org/2005/Atom">
@@ -38,11 +38,11 @@ const getFeedXML = (config) => (feed) => {
       <id>${getTagURI(link, feed.updated)}</id>
       ${feed.entries.map(getEntryXML(config)).join("")}
     </feed>
-  `.trim()
-}
+  `.trim();
+};
 
 const getEntryXML = (config) => (entry) => {
-  const link = url.resolve(config.siteRoot, entry.link)
+  const link = url.resolve(config.siteRoot, entry.link);
   return `
     <entry>
       <title>${entry.title}</title>
@@ -51,23 +51,23 @@ const getEntryXML = (config) => (entry) => {
       <updated>${entry.updated.toISOString()}</updated>
       <content src="${link}" />
     </entry>
-  `
-}
+  `;
+};
 
 export default ({ getRSSFeeds }) => ({
   afterExport: async (state) => {
-    const { config } = state
+    const { config } = state;
     const {
       paths: { DIST },
-    } = config
-    const feeds = await getRSSFeeds()
+    } = config;
+    const feeds = await getRSSFeeds();
     await Promise.all(
       feeds.map(async (feed) => {
-        const filename = path.join(feed.path, "atom.xml")
-        console.log(`Generating ${filename}...`)
-        await fs.writeFile(path.join(DIST, filename), getFeedXML(config)(feed))
-        console.log(chalk.green(`[\u2713] ${filename} generated`))
+        const filename = path.join(feed.path, "atom.xml");
+        console.log(`Generating ${filename}...`);
+        await fs.writeFile(path.join(DIST, filename), getFeedXML(config)(feed));
+        console.log(chalk.green(`[\u2713] ${filename} generated`));
       })
-    )
+    );
   },
-})
+});

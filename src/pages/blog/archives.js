@@ -1,10 +1,10 @@
 // 3p
-import React from "react"
-import { useRouteData } from "react-static"
-import { Link } from "@reach/router"
+import React from "react";
+import { useRouteData } from "react-static";
+import { Link } from "@reach/router";
 
 export default () => {
-  const { lang, posts } = useRouteData()
+  const { lang, posts } = useRouteData();
   return (
     <section className="posts">
       <h2>{lang.archiveTitle}</h2>
@@ -24,5 +24,5 @@ export default () => {
         )}
       </ul>
     </section>
-  )
-}
+  );
+};

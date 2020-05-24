@@ -1,10 +1,10 @@
 // 3p
-import React from "react"
-import { useRouteData } from "react-static"
-import { Link } from "@reach/router"
+import React from "react";
+import { useRouteData } from "react-static";
+import { Link } from "@reach/router";
 
 // local
-import config from "../../config"
+import config from "../../config";
 
 const PostsList = ({ lang, postsMetadata }) => {
   return (
@@ -29,11 +29,11 @@ const PostsList = ({ lang, postsMetadata }) => {
         <a href={`/blog/${lang.lang}/atom.xml`}>RSS</a>
       </div>
     </section>
-  )
-}
+  );
+};
 
 export default () => {
-  const { postsMetadata } = useRouteData()
+  const { postsMetadata } = useRouteData();
   return config.blog.languages.map((lang) => (
     <PostsList
       key={lang.lang}
@@ -42,5 +42,5 @@ export default () => {
         (postMetadata) => postMetadata.lang === lang.lang
       )}
     />
-  ))
-}
+  ));
+};

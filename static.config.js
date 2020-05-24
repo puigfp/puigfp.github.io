@@ -1,35 +1,35 @@
 // std (node.js)
-import { promises as fs } from "fs"
-import path from "path"
+import { promises as fs } from "fs";
+import path from "path";
 
 // 3p
-import matter from "gray-matter"
-import _ from "lodash/fp"
+import matter from "gray-matter";
+import _ from "lodash/fp";
 
 // local
-import config from "./config"
+import config from "./config";
 
 async function readPost(dir, slug) {
   // compute markdown file path
-  const indexPath = path.join(dir, slug, "index.md")
+  const indexPath = path.join(dir, slug, "index.md");
   // read file content
-  const indexContent = (await fs.readFile(indexPath)).toString()
+  const indexContent = (await fs.readFile(indexPath)).toString();
   // parse yaml front-matter
-  const { data: metadata, content: body } = matter(indexContent)
+  const { data: metadata, content: body } = matter(indexContent);
   // TODO: validate metadata fields
   // return { metadata, body }
-  return { metadata: { slug, ...metadata }, body }
+  return { metadata: { slug, ...metadata }, body };
 }
 
 async function readPosts() {
-  const dir = "public/blog/post"
-  let slugs = await fs.readdir(dir, { withFileTypes: true })
+  const dir = "public/blog/post";
+  let slugs = await fs.readdir(dir, { withFileTypes: true });
   // filter out files
-  slugs = slugs.filter((slug) => slug.isDirectory())
+  slugs = slugs.filter((slug) => slug.isDirectory());
   // read posts
-  let posts = await Promise.all(slugs.map((slug) => readPost(dir, slug.name)))
-  posts.reverse()
-  return posts
+  let posts = await Promise.all(slugs.map((slug) => readPost(dir, slug.name)));
+  posts.reverse();
+  return posts;
 }
 
 function getBlogRSSFeed({ path, title, posts }) {
@@ -48,11 +48,11 @@ function getBlogRSSFeed({ path, title, posts }) {
       link: `/blog/post/${post.metadata.slug}/`,
       updated: post.metadata.date,
     })),
-  }
+  };
 }
 
 async function getRSSFeeds() {
-  const posts = await readPosts()
+  const posts = await readPosts();
   return [
     getBlogRSSFeed({
       path: "/blog",
@@ -66,7 +66,7 @@ async function getRSSFeeds() {
         posts: posts.filter((post) => post.metadata.lang === lang),
       })
     ),
-  ]
+  ];
 }
 
 const feedsHeadEntries = [
@@ -75,14 +75,14 @@ const feedsHeadEntries = [
     path: `/blog/${lang}/atom.xml`,
     title: rssFeedTitle,
   })),
-]
+];
 
 export default {
   siteRoot: "https://puigfp.github.io/",
   stagingSiteRoot: "http://localhost:5000/",
   productionSourceMaps: true,
   getRoutes: async ({ stage }) => {
-    const posts = await readPosts()
+    const posts = await readPosts();
     return [
       // landing page
       {
@@ -120,7 +120,7 @@ export default {
             .map((post) => post.metadata),
         }),
       })),
-    ]
+    ];
   },
   plugins: [
     "react-static-plugin-sass",
@@ -128,4 +128,4 @@ export default {
     "react-static-plugin-sitemap",
     ["puigfp-rss", { getRSSFeeds, feedsHeadEntries }],
   ],
-}
+};

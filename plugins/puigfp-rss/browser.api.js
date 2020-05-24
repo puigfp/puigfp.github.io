@@ -1,5 +1,5 @@
-import React from "react"
-import { Head } from "react-static"
+import React from "react";
+import { Head } from "react-static";
 
 export default ({ feedsHeadEntries: feeds }) => ({
   Root: (PreviousRoot) => ({ children, ...rest }) => {
@@ -18,6 +18,6 @@ export default ({ feedsHeadEntries: feeds }) => ({
         </Head>
         {children}
       </PreviousRoot>
-    )
+    );
   },
-})
+});

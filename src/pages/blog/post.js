@@ -1,56 +1,56 @@
 // 3p
-import React from "react"
-import { useRouteData } from "react-static"
-import ReactMarkdown from "react-markdown"
-import remarkMath from "remark-math"
-import remarkFootnotes from "remark-numbered-footnote-labels"
-import { InlineMath, BlockMath } from "react-katex"
-import "katex/dist/katex.min.css"
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism"
+import React from "react";
+import { useRouteData } from "react-static";
+import ReactMarkdown from "react-markdown";
+import remarkMath from "remark-math";
+import remarkFootnotes from "remark-numbered-footnote-labels";
+import { InlineMath, BlockMath } from "react-katex";
+import "katex/dist/katex.min.css";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 // Mdast (Markdown AST) plugin to move footnotes definitions to the end
 const footnotesPlugin = (rootNode) => {
   // get footnotes nodes
   const footnotesNodes = rootNode.children.filter(
     (node) => node.type === "footnoteDefinition"
-  )
+  );
   // remove unnecessary nesting in footnotes (content is wrapped in a <p> tag)
   for (const node of footnotesNodes) {
-    node.children = node.children[0].children
+    node.children = node.children[0].children;
   }
   // create special footnotes node
   const footnotesNode = {
     type: "footnotes",
     children: footnotesNodes,
-  }
+  };
   // get other nodes
   const otherNodes = rootNode.children.filter(
     (node) => node.type !== "footnoteDefinition"
-  )
+  );
   // overwrite root node children to move footnotes to the end
-  rootNode.children = [].concat(otherNodes).concat([footnotesNode])
-  return rootNode
-}
+  rootNode.children = [].concat(otherNodes).concat([footnotesNode]);
+  return rootNode;
+};
 
 // Mdast (Markdown AST) plugin to update images urls
 const imagesPathPlugin = (slug) => {
   const plugin = (node) => {
     if (node.type === "image") {
       // TODO: add special behavior for absolute paths (to external images)
-      node.url = `/blog/post/${slug}/${node.url}`
-      return
+      node.url = `/blog/post/${slug}/${node.url}`;
+      return;
     }
     if (node.children === undefined) {
-      return
+      return;
     }
     for (const node of node.children) {
-      plugin(node)
+      plugin(node);
     }
-    return node
-  }
-  return plugin
-}
+    return node;
+  };
+  return plugin;
+};
 
 // custom renderers
 const renderers = {
@@ -88,10 +88,10 @@ const renderers = {
       </a>
     </sup>
   ),
-}
+};
 
 export default () => {
-  const { post } = useRouteData()
+  const { post } = useRouteData();
   return (
     <div className="markdown">
       <h1>{post.metadata.title}</h1>
@@ -114,5 +114,5 @@ export default () => {
         renderers={renderers}
       />
     </div>
-  )
-}
+  );
+};
