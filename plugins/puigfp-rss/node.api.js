@@ -19,7 +19,7 @@ const getTagURI = (url_, updated) => {
   return `tag:${host},${updated.toISOString().split("T")[0]}:${pathname}`
 }
 
-const getFeedXML = config => feed => {
+const getFeedXML = (config) => (feed) => {
   const link = url.resolve(config.siteRoot, feed.path)
   const linkSelf = url.resolve(
     config.siteRoot,
@@ -41,7 +41,7 @@ const getFeedXML = config => feed => {
   `.trim()
 }
 
-const getEntryXML = config => entry => {
+const getEntryXML = (config) => (entry) => {
   const link = url.resolve(config.siteRoot, entry.link)
   return `
     <entry>
@@ -55,19 +55,19 @@ const getEntryXML = config => entry => {
 }
 
 export default ({ getRSSFeeds }) => ({
-  afterExport: async state => {
+  afterExport: async (state) => {
     const { config } = state
     const {
-      paths: { DIST }
+      paths: { DIST },
     } = config
     const feeds = await getRSSFeeds()
     await Promise.all(
-      feeds.map(async feed => {
+      feeds.map(async (feed) => {
         const filename = path.join(feed.path, "atom.xml")
         console.log(`Generating ${filename}...`)
         await fs.writeFile(path.join(DIST, filename), getFeedXML(config)(feed))
         console.log(chalk.green(`[\u2713] ${filename} generated`))
       })
     )
-  }
+  },
 })

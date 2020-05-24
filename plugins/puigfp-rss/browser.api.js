@@ -2,7 +2,7 @@ import React from "react"
 import { Head } from "react-static"
 
 export default ({ feedsHeadEntries: feeds }) => ({
-  Root: PreviousRoot => ({ children, ...rest }) => {
+  Root: (PreviousRoot) => ({ children, ...rest }) => {
     return (
       <PreviousRoot {...rest}>
         <Head>
@@ -19,5 +19,5 @@ export default ({ feedsHeadEntries: feeds }) => ({
         {children}
       </PreviousRoot>
     )
-  }
+  },
 })

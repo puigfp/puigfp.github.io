@@ -10,10 +10,10 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { tomorrow } from "react-syntax-highlighter/dist/esm/styles/prism"
 
 // Mdast (Markdown AST) plugin to move footnotes definitions to the end
-const footnotesPlugin = rootNode => {
+const footnotesPlugin = (rootNode) => {
   // get footnotes nodes
   const footnotesNodes = rootNode.children.filter(
-    node => node.type === "footnoteDefinition"
+    (node) => node.type === "footnoteDefinition"
   )
   // remove unnecessary nesting in footnotes (content is wrapped in a <p> tag)
   for (const node of footnotesNodes) {
@@ -22,11 +22,11 @@ const footnotesPlugin = rootNode => {
   // create special footnotes node
   const footnotesNode = {
     type: "footnotes",
-    children: footnotesNodes
+    children: footnotesNodes,
   }
   // get other nodes
   const otherNodes = rootNode.children.filter(
-    node => node.type !== "footnoteDefinition"
+    (node) => node.type !== "footnoteDefinition"
   )
   // overwrite root node children to move footnotes to the end
   rootNode.children = [].concat(otherNodes).concat([footnotesNode])
@@ -34,8 +34,8 @@ const footnotesPlugin = rootNode => {
 }
 
 // Mdast (Markdown AST) plugin to update images urls
-const imagesPathPlugin = slug => {
-  const plugin = node => {
+const imagesPathPlugin = (slug) => {
+  const plugin = (node) => {
     if (node.type === "image") {
       // TODO: add special behavior for absolute paths (to external images)
       node.url = `/blog/post/${slug}/${node.url}`
@@ -87,7 +87,7 @@ const renderers = {
         {label}
       </a>
     </sup>
-  )
+  ),
 }
 
 export default () => {
@@ -103,13 +103,13 @@ export default () => {
       <ReactMarkdown
         source={post.body}
         parserOptions={{
-          footnotes: true
+          footnotes: true,
         }}
         escapeHtml={false}
         astPlugins={[footnotesPlugin, imagesPathPlugin(post.metadata.slug)]}
         plugins={[
           remarkMath, // latex equations
-          remarkFootnotes // footnotes auto-numbering
+          remarkFootnotes, // footnotes auto-numbering
         ]}
         renderers={renderers}
       />

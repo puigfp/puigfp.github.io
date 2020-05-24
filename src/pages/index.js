@@ -12,7 +12,7 @@ const PostsList = ({ lang, postsMetadata }) => {
       <h2>{lang.latestTitle}</h2>
       <ul>
         {postsMetadata ? (
-          postsMetadata.slice(0, 10).map(postMetadata => (
+          postsMetadata.slice(0, 10).map((postMetadata) => (
             <li key={postMetadata.slug}>
               <Link to={`/blog/post/${postMetadata.slug}/`}>
                 {postMetadata.title}
@@ -34,12 +34,12 @@ const PostsList = ({ lang, postsMetadata }) => {
 
 export default () => {
   const { postsMetadata } = useRouteData()
-  return config.blog.languages.map(lang => (
+  return config.blog.languages.map((lang) => (
     <PostsList
       key={lang.lang}
       lang={lang}
       postsMetadata={postsMetadata.filter(
-        postMetadata => postMetadata.lang === lang.lang
+        (postMetadata) => postMetadata.lang === lang.lang
       )}
     />
   ))

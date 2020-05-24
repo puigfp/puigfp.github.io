@@ -10,7 +10,7 @@ export default () => {
       <h2>{lang.archiveTitle}</h2>
       <ul>
         {posts.length ? (
-          posts.map(post => (
+          posts.map((post) => (
             <li key={post.slug}>
               <Link to={`/blog/post/${post.slug}/`}>
                 {new Date(post.date).toISOString().slice(0, 10)}
