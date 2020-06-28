@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <title>puigfp - fr</title>
+      <link href="https://puigfp.github.io/blog/fr"/>
+      <link rel="self" href="https://puigfp.github.io/blog/fr/atom.xml" />
+      <updated>2019-08-13T00:00:00.000Z</updated>
+      <author>
+        <name>puigfp</name>
+      </author>
+      <id>tag:puigfp.github.io,2019-08-13:/blog/fr</id>
+      
+    <entry>
+      <title>Bokeh et optique géométrique</title>
+      <link href="https://puigfp.github.io/blog/post/2019-08-13-bokeh/" />
+      <id>tag:puigfp.github.io,2019-08-13:/blog/post/2019-08-13-bokeh/</id>
+      <updated>2019-08-13T00:00:00.000Z</updated>
+      <content src="https://puigfp.github.io/blog/post/2019-08-13-bokeh/" />
+    </entry>
+  
+    </feed>

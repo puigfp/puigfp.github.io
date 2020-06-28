@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:////home/runner/work/puigfp.github.io/puigfp.github.io/src/pages/404.js"],"names":[],"mappings":"yFAAA,2BAGe,4BAAM","file":"templates/__react_static_root__/src/pages/404.3b0c542a.js","sourcesContent":["// 3p\nimport React from \"react\";\n\nexport default () => <div>404</div>;\n"],"sourceRoot":""}

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <feed xmlns="http://www.w3.org/2005/Atom">
+      <title>puigfp - all posts</title>
+      <link href="https://puigfp.github.io/blog"/>
+      <link rel="self" href="https://puigfp.github.io/blog/atom.xml" />
+      <updated>2020-05-14T00:00:00.000Z</updated>
+      <author>
+        <name>puigfp</name>
+      </author>
+      <id>tag:puigfp.github.io,2020-05-14:/blog</id>
+      
+    <entry>
+      <title>Having multiple SSH keys for different GitHub accounts</title>
+      <link href="https://puigfp.github.io/blog/post/2020-05-14-github-ssh/" />
+      <id>tag:puigfp.github.io,2020-05-14:/blog/post/2020-05-14-github-ssh/</id>
+      <updated>2020-05-14T00:00:00.000Z</updated>
+      <content src="https://puigfp.github.io/blog/post/2020-05-14-github-ssh/" />
+    </entry>
+  
+    <entry>
+      <title>The Knuth–Morris–Pratt algorithm</title>
+      <link href="https://puigfp.github.io/blog/post/2020-01-03-kmp/" />
+      <id>tag:puigfp.github.io,2020-01-03:/blog/post/2020-01-03-kmp/</id>
+      <updated>2020-01-03T00:00:00.000Z</updated>
+      <content src="https://puigfp.github.io/blog/post/2020-01-03-kmp/" />
+    </entry>
+  
+    <entry>
+      <title>Bokeh et optique géométrique</title>
+      <link href="https://puigfp.github.io/blog/post/2019-08-13-bokeh/" />
+      <id>tag:puigfp.github.io,2019-08-13:/blog/post/2019-08-13-bokeh/</id>
+      <updated>2019-08-13T00:00:00.000Z</updated>
+      <content src="https://puigfp.github.io/blog/post/2019-08-13-bokeh/" />
+    </entry>
+  
+    </feed>
