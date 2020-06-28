@@ -49,7 +49,7 @@ The first behavior is that, by default, the SSH client doesn't only try to authe
 
 For instance, if my work key is loaded in my SSH agent and I run `git clone github-personal:puigfp/repo.git`, the SSH client may try to authenticate using my work key before trying with my personal key.
 
-When it happens, the authentication succeeds, because my work key is known by github (as it's associated with my work account), but the clone fails with:
+When it happens, the authentication succeeds, because my work key is known by GitHub (as it's associated with my work account), but the clone fails with:
 
 ```
 ERROR: Repository not found.
